@@ -1,2 +1,2 @@
 [run]
-omit = eva/parser/evaql/*
+omit = src/parser/evaql/*

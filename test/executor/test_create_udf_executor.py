@@ -15,11 +15,11 @@
 import unittest
 
 from mock import patch, MagicMock
-from eva.executor.create_udf_executor import CreateUDFExecutor
+from src.executor.create_udf_executor import CreateUDFExecutor
 
 
 class CreateUdfExecutorTest(unittest.TestCase):
-    @patch('eva.executor.create_udf_executor.CatalogManager')
+    @patch('src.executor.create_udf_executor.CatalogManager')
     def test_should_create_udf(self, mock):
         catalog_instance = mock.return_value
         catalog_instance.create_udf.return_value = 'udf'

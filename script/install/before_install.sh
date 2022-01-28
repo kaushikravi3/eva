@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Install mysql and start server
+sudo -E apt-get update
+sudo -E apt-get -q -y install mysql-server
+sudo systemctl start mysql
+
 # Install java8 (for running antlr4)
 sudo -E apt install -y openjdk-8-jdk openjdk-8-jre
 

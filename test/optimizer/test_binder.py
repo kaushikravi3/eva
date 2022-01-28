@@ -2,11 +2,11 @@ import unittest
 
 from mock import MagicMock
 
-from eva.optimizer.binder import Binder
-from eva.optimizer.optimizer_context import OptimizerContext
-from eva.optimizer.operators import (
+from src.optimizer.binder import Binder
+from src.optimizer.optimizer_context import OptimizerContext
+from src.optimizer.operators import (
     OperatorType, LogicalFilter, LogicalGet, Dummy)
-from eva.optimizer.rules.pattern import Pattern
+from src.optimizer.rules.pattern import Pattern
 
 
 class TestBinder(unittest.TestCase):

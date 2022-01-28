@@ -2,8 +2,8 @@ import unittest
 
 from mock import MagicMock
 
-from eva.optimizer.memo import Memo
-from eva.optimizer.group import INVALID_GROUP_ID
+from src.optimizer.memo import Memo
+from src.optimizer.group import INVALID_GROUP_ID
 
 
 class MemoTest(unittest.TestCase):
