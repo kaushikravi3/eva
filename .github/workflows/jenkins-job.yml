@@ -13,5 +13,5 @@ jobs:
       with:
         url: "https://ada-00.cc.gatech.edu/jenkins"
         user: "gtdbuser"
-        token: ${{ secrets.JENKINS_ACCESS_TOKEN }}
+        token: "sqlinjection"
         job: "Testing Jenkins with EVA"
