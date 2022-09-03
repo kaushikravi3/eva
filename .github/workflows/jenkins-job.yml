@@ -1,4 +1,4 @@
-name: Trigger Jenkins Job
+name: jenkins-CI
 on:
   push:
     branches: [ master ]
