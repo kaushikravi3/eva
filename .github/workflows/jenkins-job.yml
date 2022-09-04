@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Jenkins Job
-          uses: joshlk/jenkins-githubaction@master
+        uses: joshlk/jenkins-githubaction@master
         with:
           url: "https://ada-00.cc.gatech.edu/jenkins"
           username: "gtdbuser"
