@@ -28,7 +28,6 @@ RUN apt-get -qq update \
         python3-dev \
         sudo \
     && pip install numpy \
-    && pip install dask
     && wget -q https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip \
     && unzip -qq opencv.zip -d /opt \
     && rm -rf opencv.zip \
