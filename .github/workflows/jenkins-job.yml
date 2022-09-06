@@ -14,5 +14,5 @@ jobs:
           url: "https://ada-00.cc.gatech.edu/jenkins"
           username: "gtdbuser"
           api_token: ${{ secrets.JENKINS_ACCESS_TOKEN }}
-          job_name: "eva"
+          job_name: "EVA-Test-kravicha"
           wait: True
