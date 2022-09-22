@@ -6,7 +6,7 @@ pipeline {
 
   }
   stages {
-    stage('Setup and Build') {
+    stage('Setup and Build EVA') {
       parallel {
         stage('Setup Virtual Environment') {
           steps {
@@ -26,20 +26,6 @@ python setup.py install'''
           }
         }
 
-      }
-    }
-
-    stage('Test') {
-      steps {
-        sh '''. env37/bin/activate
-sh script/test/test.sh'''
-      }
-    }
-
-    stage('Coveralls') {
-      steps {
-        sh '''. env37/bin/activate
-coveralls'''
       }
     }
 
