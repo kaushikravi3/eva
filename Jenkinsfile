@@ -37,5 +37,12 @@ coveralls'''
       }
     }
 
+    stage('Coveralls') {
+      steps {
+        sh '''. env37/bin/activate
+coveralls'''
+      }
+    }
+
   }
 }
