@@ -42,6 +42,5 @@ sh script/test/test.sh'''
 coveralls'''
       }
     }
-
   }
 }
