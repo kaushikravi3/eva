@@ -32,7 +32,7 @@
 
 ## What is EVA?
 
-EVA is a new database system tailored for video analytics -- think MySQL for videos. It supports a simple SQL-like language for querying videos (e.g., finding frames in a movie with your favorite actor or find touchdowns in a football game). It comes with a wide range of commonly used computer vision models.
+EVAA is a new database system tailored for video analytics -- think MySQL for videos. It supports a simple SQL-like language for querying videos (e.g., finding frames in a movie with your favorite actor or find touchdowns in a football game). It comes with a wide range of commonly used computer vision models.
 
 ## Why EVA? ##
 
