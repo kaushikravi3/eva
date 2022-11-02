@@ -28,6 +28,13 @@ pip install -e ."[dev]"'''
       }
     }
 
+    stage('CUDA GPU Check') {
+      steps {
+        sh '''. env37/bin/activate
+python3 -c "import torch; torch.cuda.current_device()"'''
+      }
+    }
+
     stage('Run Tests') {
       steps {
         sh '''. env37/bin/activate
