@@ -2,7 +2,7 @@ pipeline {
   agent {
     dockerfile {
       filename 'docker/eva_jenkins.Dockerfile'
-      args '--gpus 1'
+      args '--gpus all'
     }
 
   }
