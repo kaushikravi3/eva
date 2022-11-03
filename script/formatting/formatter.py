@@ -26,7 +26,7 @@ import pkg_resources
 # ==============================================
 # CONFIGURATION
 # ==============================================
-
+print("Beginning of lint file")
 # NOTE: absolute path to eva directory is calculated from current directory
 # directory structure: eva/scripts/formatting/<this_file>
 # EVA_DIR needs to be redefined if the directory structure is changed
@@ -227,7 +227,7 @@ def format_dir(dir_path, add_header, strip_header, format_code):
 
 
 if __name__ == "__main__":
-
+    print("Beginning of lint file -- main")
     parser = argparse.ArgumentParser(
         description="Add/delete headers and/or format source code"
     )
@@ -316,3 +316,5 @@ if __name__ == "__main__":
                     format_file(file, False, True, False)
                     format_file(file, True, False, False)
                 format_file(file, False, False, True)
+    print("End of lint file -- main")
+print("End of lint file")
