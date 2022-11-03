@@ -21,4 +21,4 @@ if ! git diff-index --quiet HEAD --; then
     git --no-pager diff --name-only
     exit 1
 fi
-
+echo "Linting step completed"
