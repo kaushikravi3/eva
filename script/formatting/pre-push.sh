@@ -5,7 +5,7 @@ NC='\033[0m'              # No Color
 
 echo "Linting code before commiting changes"
 echo "Running script/formatting/formatter.py"
-python -u script/formatting/formatter.py
+python script/formatting/formatter.py
 exit_status=$?
 if [ $exit_status -ne 0 ]; then
     echo " ${Red}Oops! linting failed."
@@ -21,4 +21,3 @@ if ! git diff-index --quiet HEAD --; then
     git --no-pager diff --name-only
     exit 1
 fi
-echo "Linting step completed"
