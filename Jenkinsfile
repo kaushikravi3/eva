@@ -4,7 +4,9 @@ pipeline {
       filename 'docker/eva_jenkins.Dockerfile'
       args '--gpus all'
     }
-
+  }
+  environment {
+    HOME = pwd(tmp:true)
   }
   stages {
     stage('Setup and Install Packages') {
