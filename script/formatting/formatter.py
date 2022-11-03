@@ -227,7 +227,7 @@ def format_dir(dir_path, add_header, strip_header, format_code):
 
 
 if __name__ == "__main__":
-    print("Beginning of lint file -- main")
+    print("Beginning of lint file - main")
     parser = argparse.ArgumentParser(
         description="Add/delete headers and/or format source code"
     )
@@ -274,6 +274,7 @@ if __name__ == "__main__":
     is_tool(FLAKE_BINARY)
     is_tool(ISORT_BINARY)
     if args.file_name:
+        print("in if")
         LOG.info("Scanning file: " + "".join(args.file_name))
         format_file(
             args.file_name,
@@ -282,12 +283,14 @@ if __name__ == "__main__":
             args.format_code,
         )
     elif args.dir_name:
+        print("in elif")
         LOG.info("Scanning directory " + "".join(args.dir_name))
         format_dir(
             args.dir_name, args.add_header, args.strip_header, args.format_code
         )
     # BY DEFAULT, WE FIX THE MODIFIED FILES
     else:
+        print("in else")
         # LOG.info("Default fix modified files")
         MERGEBASE = subprocess.check_output(
             "git merge-base origin/master HEAD", shell=True, text=True
