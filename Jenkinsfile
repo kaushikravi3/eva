@@ -1,14 +1,16 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'docker/eva_jenkins.Dockerfile'
-      args '--gpus all'
-    }
-  }
+  agent none
+  
   environment {
     HOME = pwd(tmp:true)
   }
   stages {
+      agent {
+      dockerfile {
+        filename 'docker/eva_jenkins.Dockerfile'
+        args '--gpus all'
+      }
+    }
     stage('Setup and Install Packages') {
       parallel {
         stage('Setup Virtual Environment') {
