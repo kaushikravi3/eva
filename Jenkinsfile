@@ -1,13 +1,18 @@
 pipeline {
   agent none
   
+  options{
+    buildDiscarder(logRotator(numToKeepStr: '8', daysToKeepStr: '20'))
+  }
+  
   environment {
     HOME = pwd(tmp:true)
   }
+  
   stages {
     agent {
       dockerfile {
-        filename 'docker/eva_jenkins.Dockerfile'
+        filename 'docker/jenkins.Dockerfile'
         args '--gpus all'
       }
     }
