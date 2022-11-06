@@ -10,16 +10,16 @@ pipeline {
   }
   
   stages {
-    agent {
+  
+    stage('Setup and Install Packages') {
+      parallel {
+        stage('Setup Virtual Environment') {
+          agent {
       dockerfile {
         filename 'docker/jenkins.Dockerfile'
         args '--gpus all'
       }
     }
-    
-    stage('Setup and Install Packages') {
-      parallel {
-        stage('Setup Virtual Environment') {
           steps {
             sh '''python3 -m venv env37
                   . env37/bin/activate
@@ -31,6 +31,7 @@ pipeline {
           }
         }
         stage('Generate Parser Files') {
+          agent any
           steps {
             sh 'sh script/antlr4/generate_parser.sh'
           }
@@ -39,6 +40,12 @@ pipeline {
     }
 
     stage('CUDA GPU Check') {
+    agent {
+      dockerfile {
+        filename 'docker/jenkins.Dockerfile'
+        args '--gpus all'
+      }
+    }
       steps {
           sh '''. env37/bin/activate
                 python3 -c "import torch; torch.cuda.current_device()"
@@ -47,13 +54,26 @@ pipeline {
     }
 
     stage('Run Tests') {
+    agent {
+      dockerfile {
+        filename 'docker/jenkins.Dockerfile'
+        args '--gpus all'
+      }
+    }
       steps {
         sh '''. env37/bin/activate
-          sh script/test/test.sh'''
+              sh script/test/test.sh
+           '''
        }
      }
 
     stage('Coverage Check') {
+    agent {
+      dockerfile {
+        filename 'docker/jenkins.Dockerfile'
+        args '--gpus all'
+      }
+    }
       steps {
         sh '''. env37/bin/activate
           coveralls'''
