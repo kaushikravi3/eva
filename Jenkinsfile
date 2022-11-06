@@ -21,8 +21,7 @@ pipeline {
       parallel {
         stage('Setup Virtual Environment') {
           steps {
-            sh '''
-                  python3 -m venv env37
+            sh '''python3 -m venv env37
                   . env37/bin/activate
                   pip install --upgrade pip
                   pip install scikit-build
