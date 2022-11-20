@@ -26,6 +26,7 @@ from eva.binder.binder_utils import (
 )
 from eva.binder.statement_binder_context import StatementBinderContext
 from eva.catalog.catalog_manager import CatalogManager
+from eva.catalog.schema_utils import SchemaUtils
 from eva.configuration.configuration_manager import ConfigurationManager
 from eva.expression.abstract_expression import AbstractExpression
 from eva.expression.function_expression import FunctionExpression
@@ -42,7 +43,6 @@ from eva.parser.types import FileFormatType
 from eva.parser.upload_statement import UploadStatement
 from eva.utils.generic_utils import path_to_class
 from eva.utils.logging_manager import logger
-from eva.catalog.schema_utils import SchemaUtils
 
 if sys.version_info >= (3, 8):
     from functools import singledispatchmethod
