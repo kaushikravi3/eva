@@ -32,7 +32,9 @@ class DataFrameMetadata(BaseModel):
         cascade="all, delete, delete-orphan",
     )
 
-    def non_copy_constructor(self, name: str, file_url: str, identifier_id="id", is_video=False):
+    def non_copy_constructor(
+        self, name: str, file_url: str, identifier_id="id", is_video=False
+    ):
         self._name = name
         self._file_url = file_url
         self._schema = None
@@ -47,9 +49,8 @@ class DataFrameMetadata(BaseModel):
         self._unique_identifier_column = object.identifier_id
         self._is_video = object.is_video
 
-
     def __init__(self, *args):
-        if (len(args) > 1):
+        if len(args) > 1:
             self.non_copy_constructor(*args)
         else:
             self.copy_constructor(args)

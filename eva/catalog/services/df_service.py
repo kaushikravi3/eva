@@ -74,7 +74,9 @@ class DatasetService(BaseService):
         Returns:
            TableMetadata
         """
-        return TableMetadata(self.model.query.filter(self.model._id == dataset_id).one())
+        return TableMetadata(
+            self.model.query.filter(self.model._id == dataset_id).one()
+        )
 
     def dataset_object_by_name(
         self, database_name, dataset_name, column_name: List[str] = None
@@ -91,7 +93,9 @@ class DatasetService(BaseService):
         Returns:
             TableMetadata - metadata for given dataset_name
         """
-        return TableMetadata(self.model.query.filter(self.model._name == dataset_name).one_or_none())
+        return TableMetadata(
+            self.model.query.filter(self.model._name == dataset_name).one_or_none()
+        )
 
     def drop_dataset_by_name(self, database_name: str, dataset_name: str):
         """Delete dataset from the db
