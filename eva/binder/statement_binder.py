@@ -26,7 +26,6 @@ from eva.binder.binder_utils import (
 )
 from eva.binder.statement_binder_context import StatementBinderContext
 from eva.catalog.catalog_manager import CatalogManager
-from eva.catalog.schema_utils import SchemaUtils
 from eva.configuration.configuration_manager import ConfigurationManager
 from eva.expression.abstract_expression import AbstractExpression
 from eva.expression.function_expression import FunctionExpression
@@ -163,7 +162,7 @@ class StatementBinder:
         # else we curate the column list from the metadata
         else:
             column_list = []
-            for column in SchemaUtils.get_sqlalchemy_schema(table_ref_obj.columns):
+            for column in table_ref_obj.columns:
                 column_list.append(
                     TupleValueExpression(
                         col_name=column.name,
