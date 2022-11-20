@@ -16,7 +16,7 @@ from typing import List
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.catalog.services.base_service import BaseService
 from eva.utils.logging_manager import logger
 

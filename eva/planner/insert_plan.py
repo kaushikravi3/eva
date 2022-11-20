@@ -14,7 +14,7 @@
 # limitations under the License.
 from typing import List
 
-from eva.catalog.models.df_metadata import DataFrameMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.expression.abstract_expression import AbstractExpression
 from eva.planner.abstract_plan import AbstractPlan
 from eva.planner.types import PlanOprType

@@ -17,7 +17,7 @@ from typing import List
 from eva.catalog.column_type import ColumnType, NdArrayType
 from eva.catalog.models.base_model import drop_db, init_db
 from eva.catalog.models.df_column import DataFrameColumn
-from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.catalog.models.udf import UdfMetadata
 from eva.catalog.models.udf_io import UdfIO
 from eva.catalog.services.df_column_service import DatasetColumnService

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 from eva.catalog.catalog_manager import CatalogManager
 from eva.catalog.column_type import ColumnType, NdArrayType
-from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.expression.tuple_value_expression import TupleValueExpression
 from eva.parser.create_statement import ColConstraintInfo, ColumnDefinition
 from eva.parser.table_ref import TableInfo, TableRef

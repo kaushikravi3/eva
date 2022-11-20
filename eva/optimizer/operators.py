@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import List
 
 from eva.catalog.models.df_column import DataFrameColumn
-from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.catalog.models.udf_io import UdfIO
 from eva.expression.abstract_expression import AbstractExpression
 from eva.expression.constant_value_expression import ConstantValueExpression
