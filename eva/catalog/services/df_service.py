@@ -44,7 +44,7 @@ class DatasetService(BaseService):
             is_video=is_video,
         )
         metadata = metadata.save()
-        return DataFrameMetadata(metadata)
+        return metadata
 
     def dataset_by_name(self, name: str) -> int:
         """
@@ -74,9 +74,7 @@ class DatasetService(BaseService):
         Returns:
            DataFrameMetadata
         """
-        return DataFrameMetadata(
-            self.model.query.filter(self.model._id == dataset_id).one()
-        )
+        return self.model.query.filter(self.model._id == dataset_id).one()
 
     def dataset_object_by_name(
         self, database_name, dataset_name, column_name: List[str] = None
@@ -93,9 +91,7 @@ class DatasetService(BaseService):
         Returns:
             DataFrameMetadata - metadata for given dataset_name
         """
-        return DataFrameMetadata(
-            self.model.query.filter(self.model._name == dataset_name).one_or_none()
-        )
+        return self.model.query.filter(self.model._name == dataset_name).one_or_none()
 
     def drop_dataset_by_name(self, database_name: str, dataset_name: str):
         """Delete dataset from the db

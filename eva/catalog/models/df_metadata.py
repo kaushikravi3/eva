@@ -32,7 +32,7 @@ class DataFrameMetadata(BaseModel):
         cascade="all, delete, delete-orphan",
     )
 
-    def non_copy_constructor(
+    def __init__(
         self, name: str, file_url: str, identifier_id="id", is_video=False
     ):
         self._name = name
@@ -40,20 +40,6 @@ class DataFrameMetadata(BaseModel):
         self._schema = None
         self._unique_identifier_column = identifier_id
         self._is_video = is_video
-
-    # copy constructor used to typecast DataFrameMetadata to TableMetadata
-    def copy_constructor(self, object):
-        self._name = object.name
-        self._file_url = object.file_url
-        self._schema = object.Schema
-        self._unique_identifier_column = object.identifier_id
-        self._is_video = object.is_video
-
-    def __init__(self, *args):
-        if len(args) > 1:
-            self.non_copy_constructor(*args)
-        else:
-            self.copy_constructor(args)
 
     @property
     def schema(self):
