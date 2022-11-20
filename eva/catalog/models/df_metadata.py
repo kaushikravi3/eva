@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from sqlalchemy import Boolean, Column, String
+from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.orm import relationship
 
 from eva.catalog.df_schema import DataFrameSchema
@@ -98,6 +98,7 @@ class DataFrameMetadata(BaseModel):
 # but without any links to its base class (SQLLite session object isn't a member of it)
 # TableMetadata = type("TableMetadata", (), DataFrameMetadata.__dict__)
 class TableMetadata:
+    _id = Column("_row_id", Integer, primary_key=True)
     _name = Column("name", String(100), unique=True)
     _file_url = Column("file_url", String(100))
     _unique_identifier_column = Column("identifier_column", String(100))
