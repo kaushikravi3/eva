@@ -18,6 +18,7 @@ from sqlalchemy.orm import relationship
 from eva.catalog.df_schema import DataFrameSchema
 from eva.catalog.models.base_model import BaseModel
 
+
 class DataFrameMetadata(BaseModel):
     __tablename__ = "df_metadata"
 
@@ -31,7 +32,7 @@ class DataFrameMetadata(BaseModel):
         cascade="all, delete, delete-orphan",
     )
 
-    def __init__(self, name: str, file_url: str, identifier_id="id", is_video=False):
+    def non_copy_constructor(self, name: str, file_url: str, identifier_id="id", is_video=False):
         self._name = name
         self._file_url = file_url
         self._schema = None
@@ -39,12 +40,19 @@ class DataFrameMetadata(BaseModel):
         self._is_video = is_video
 
     # copy constructor used to typecast DataFrameMetadata to TableMetadata
-    def __init__(self, object):
+    def copy_constructor(self, object):
         self._name = object.name
         self._file_url = object.file_url
         self._schema = object.Schema
         self._unique_identifier_column = object.identifier_id
         self._is_video = object.is_video
+
+
+    def __init__(self, *args):
+        if (len(args) > 1):
+            self.non_copy_constructor(*args)
+        else:
+            self.copy_constructor(args)
 
     @property
     def schema(self):
@@ -100,6 +108,7 @@ class DataFrameMetadata(BaseModel):
             )
         )
 
+
 # Create a table metadata class which has the same attributes, properties and methods as DataFrameMetadata,
 # but without any links to its base class (SQLLite session object isn't a member of it)
-TableMetadata = type ('TableMetadata', (), vars(DataFrameMetadata))
+TableMetadata = type("TableMetadata", (), vars(DataFrameMetadata))
