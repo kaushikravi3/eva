@@ -16,18 +16,18 @@ from typing import List
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from eva.catalog.models.df_metadata import TableMetadata
+from eva.catalog.models.df_metadata import DataFrameMetadata
 from eva.catalog.services.base_service import BaseService
 from eva.utils.logging_manager import logger
 
 
 class DatasetService(BaseService):
     def __init__(self):
-        super().__init__(TableMetadata)
+        super().__init__(DataFrameMetadata)
 
     def create_dataset(
         self, name, file_url, identifier_id="id", is_video=False
-    ) -> TableMetadata:
+    ) -> DataFrameMetadata:
         """
         Create a new dataset entry for given name and file URL.
         Arguments:
@@ -35,7 +35,7 @@ class DatasetService(BaseService):
             file_url (str): file path of the dataset.
             is_video (bool): True if the table is a video
         Returns:
-            TableMetadata object
+            DataFrameMetadata object
         """
         metadata = self.model(
             name=name,
@@ -44,7 +44,7 @@ class DatasetService(BaseService):
             is_video=is_video,
         )
         metadata = metadata.save()
-        return TableMetadata(metadata)
+        return DataFrameMetadata(metadata)
 
     def dataset_by_name(self, name: str) -> int:
         """
@@ -66,15 +66,15 @@ class DatasetService(BaseService):
         except NoResultFound:
             logger.error("get_id_from_name failed with name {}".format(name))
 
-    def dataset_by_id(self, dataset_id) -> TableMetadata:
+    def dataset_by_id(self, dataset_id) -> DataFrameMetadata:
         """
         Returns the dataset by ID
         Arguments:
             dataset_id (int)
         Returns:
-           TableMetadata
+           DataFrameMetadata
         """
-        return TableMetadata(
+        return DataFrameMetadata(
             self.model.query.filter(self.model._id == dataset_id).one()
         )
 
@@ -91,9 +91,9 @@ class DatasetService(BaseService):
             need be listed. If not specified, all columns will be retrieved
             # TODO:  perform column filtering when column_name not None
         Returns:
-            TableMetadata - metadata for given dataset_name
+            DataFrameMetadata - metadata for given dataset_name
         """
-        return TableMetadata(
+        return DataFrameMetadata(
             self.model.query.filter(self.model._name == dataset_name).one_or_none()
         )
 
