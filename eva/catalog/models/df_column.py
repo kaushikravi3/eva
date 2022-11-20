@@ -53,14 +53,6 @@ class DataFrameColumn(BaseModel):
         self.array_dimensions = array_dimensions
         self._metadata_id = metadata_id
 
-    # copy constructor used to typecast DataFrameColumn to ColumnMetadata
-    def __init__(self, object):
-        self._name = object.name
-        self._file_url = object.file_url
-        self._schema = object.Schema
-        self._unique_identifier_column = object.identifier_id
-        self._is_video = object.is_video
-
     @property
     def id(self):
         return self._id
@@ -146,7 +138,3 @@ class DataFrameColumn(BaseModel):
                 self.type,
             )
         )
-
-# Create a column metadata class which has the same attributes, properties and methods as DataFrameColumn,
-# but without any links to its base class (SQLLite session object isn't a member of it)
-ColumnMetadata = type ('ColumnMetadata', (), vars(DataFrameColumn))
