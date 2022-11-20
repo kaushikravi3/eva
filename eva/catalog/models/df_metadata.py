@@ -112,4 +112,76 @@ class DataFrameMetadata(BaseModel):
 
 # Create a table metadata class which has the same attributes, properties and methods as DataFrameMetadata,
 # but without any links to its base class (SQLLite session object isn't a member of it)
-TableMetadata = type("TableMetadata", (), DataFrameMetadata.__dict__)
+#TableMetadata = type("TableMetadata", (), DataFrameMetadata.__dict__)
+class TableMetadata():
+    _name = Column("name", String(100), unique=True)
+    _file_url = Column("file_url", String(100))
+    _unique_identifier_column = Column("identifier_column", String(100))
+    _is_video = Column("is_video", Boolean)
+    _columns = relationship(
+        "DataFrameColumn",
+        back_populates="_dataset",
+        cascade="all, delete, delete-orphan",
+    )
+
+    # copy constructor used to typecast DataFrameMetadata to TableMetadata
+    def __init__(self, object):
+        self._name = object.name
+        self._file_url = object.file_url
+        self._schema = object.Schema
+        self._unique_identifier_column = object.identifier_id
+        self._is_video = object.is_video
+
+    @property
+    def schema(self):
+        return self._schema
+
+    @schema.setter
+    def schema(self, column_list):
+        self._schema = DataFrameSchema(self._name, column_list)
+
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def file_url(self):
+        return self._file_url
+
+    @property
+    def columns(self):
+        return self._columns
+
+    @property
+    def identifier_column(self):
+        return self._unique_identifier_column
+
+    @property
+    def is_video(self):
+        return self._is_video
+
+    def __eq__(self, other):
+        return (
+            self.id == other.id
+            and self.file_url == other.file_url
+            and self.schema == other.schema
+            and self.identifier_column == other.identifier_column
+            and self.name == other.name
+            and self.is_video == other.is_video
+        )
+
+    def __hash__(self) -> int:
+        return hash(
+            (
+                self.id,
+                self.file_url,
+                self.schema,
+                self.identifier_column,
+                self.name,
+                self.is_video,
+            )
+        )
