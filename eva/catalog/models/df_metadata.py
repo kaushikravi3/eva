@@ -112,4 +112,4 @@ class DataFrameMetadata(BaseModel):
 
 # Create a table metadata class which has the same attributes, properties and methods as DataFrameMetadata,
 # but without any links to its base class (SQLLite session object isn't a member of it)
-TableMetadata = type("TableMetadata", (), vars(DataFrameMetadata))
+TableMetadata = type("TableMetadata", (), DataFrameMetadata.__dict__)
