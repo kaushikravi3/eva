@@ -61,7 +61,7 @@ def create_video_metadata(name: str) -> DataFrameMetadata:
     metadata = catalog.create_metadata(
         name, uri, col_metadata, identifier_column="id", is_video=True
     )
-    return DataFrameMetadata(metadata)
+    return metadata
 
 
 def create_table_metadata(
@@ -73,7 +73,7 @@ def create_table_metadata(
     metadata = CatalogManager().create_metadata(
         table_name, file_url, column_metadata_list
     )
-    return DataFrameMetadata(metadata)
+    return metadata
 
 
 def create_column_metadata(col_list: List[ColumnDefinition]):
