@@ -17,7 +17,7 @@ from typing import List
 from sqlalchemy.orm.exc import NoResultFound
 
 from eva.catalog.models.df_column import DataFrameColumn
-from eva.catalog.models.df_metadata import TableMetadata
+from eva.catalog.models.df_metadata import DataFrameMetadata
 from eva.catalog.services.base_service import BaseService
 
 
@@ -58,7 +58,7 @@ class DatasetColumnService(BaseService):
             saved_column_list.append(column.save())
         return saved_column_list
 
-    def get_dataset_columns(self, dataset: TableMetadata) -> List[DataFrameColumn]:
+    def get_dataset_columns(self, dataset: DataFrameMetadata) -> List[DataFrameColumn]:
         try:
             return self.model.query.filter(self.model._metadata_id == dataset.id).all()
         except NoResultFound:
