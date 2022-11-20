@@ -42,6 +42,7 @@ from eva.parser.types import FileFormatType
 from eva.parser.upload_statement import UploadStatement
 from eva.utils.generic_utils import path_to_class
 from eva.utils.logging_manager import logger
+from eva.catalog.schema_utils import SchemaUtils
 
 if sys.version_info >= (3, 8):
     from functools import singledispatchmethod
@@ -162,7 +163,7 @@ class StatementBinder:
         # else we curate the column list from the metadata
         else:
             column_list = []
-            for column in table_ref_obj.columns:
+            for column in SchemaUtils.get_sqlalchemy_schema(table_ref_obj.columns):
                 column_list.append(
                     TupleValueExpression(
                         col_name=column.name,
