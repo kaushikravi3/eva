@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 from eva.catalog.catalog_manager import CatalogManager
 from eva.catalog.column_type import ColumnType, NdArrayType
-from eva.catalog.models.df_metadata import TableMetadata
+from eva.catalog.models.df_metadata import DataFrameMetadata
 from eva.expression.tuple_value_expression import TupleValueExpression
 from eva.parser.create_statement import ColConstraintInfo, ColumnDefinition
 from eva.parser.table_ref import TableInfo, TableRef
@@ -34,7 +34,7 @@ class BinderError(Exception):
     pass
 
 
-def create_video_metadata(name: str) -> TableMetadata:
+def create_video_metadata(name: str) -> DataFrameMetadata:
     """Create video metadata object.
         We have predefined columns for such a object
         id:  the frame id
@@ -44,7 +44,7 @@ def create_video_metadata(name: str) -> TableMetadata:
         name (str): name of the metadata to be added to the catalog
 
     Returns:
-        TableMetadata:  corresponding metadata for the input table info
+        DataFrameMetadata:  corresponding metadata for the input table info
     """
     catalog = CatalogManager()
     columns = [
@@ -61,19 +61,19 @@ def create_video_metadata(name: str) -> TableMetadata:
     metadata = catalog.create_metadata(
         name, uri, col_metadata, identifier_column="id", is_video=True
     )
-    return TableMetadata(metadata)
+    return DataFrameMetadata(metadata)
 
 
 def create_table_metadata(
     table_ref: TableRef, columns: List[ColumnDefinition]
-) -> TableMetadata:
+) -> DataFrameMetadata:
     table_name = table_ref.table.table_name
     column_metadata_list = create_column_metadata(columns)
     file_url = str(generate_file_path(table_name))
     metadata = CatalogManager().create_metadata(
         table_name, file_url, column_metadata_list
     )
-    return TableMetadata(metadata)
+    return DataFrameMetadata(metadata)
 
 
 def create_column_metadata(col_list: List[ColumnDefinition]):
@@ -101,7 +101,7 @@ def create_column_metadata(col_list: List[ColumnDefinition]):
     return result_list
 
 
-def bind_table_info(table_info: TableInfo) -> TableMetadata:
+def bind_table_info(table_info: TableInfo) -> DataFrameMetadata:
     """
     Uses catalog to bind the dataset information for given video string.
 
@@ -109,10 +109,10 @@ def bind_table_info(table_info: TableInfo) -> TableMetadata:
          video_info (TableInfo): video information obtained in SQL query
 
     Returns:
-        TableMetadata  -  corresponding metadata for the input table info
+        DataFrameMetadata  -  corresponding metadata for the input table info
     """
     catalog = CatalogManager()
-    obj = catalog.get_dataset_metadata(table_info.database_name, table_info.table_name)
+    obj = DataFrameMetadata(catalog.get_dataset_metadata(table_info.database_name, table_info.table_name))
     if obj:
         table_info.table_obj = obj
     else:
