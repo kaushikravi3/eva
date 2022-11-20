@@ -34,7 +34,7 @@ class InsertPlan(AbstractPlan):
 
     def __init__(
         self,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         column_list: List[AbstractExpression],
         value_list: List[AbstractExpression],
     ):

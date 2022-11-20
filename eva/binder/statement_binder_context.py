@@ -17,7 +17,7 @@ from typing import Dict, List, Tuple, Union
 from eva.binder.binder_utils import BinderError
 from eva.catalog.catalog_manager import CatalogManager
 from eva.catalog.models.df_column import DataFrameColumn
-from eva.catalog.models.df_metadata import DataFrameMetadata
+from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
 from eva.catalog.models.udf_io import UdfIO
 from eva.expression.function_expression import FunctionExpression
 from eva.expression.tuple_value_expression import TupleValueExpression
@@ -41,7 +41,7 @@ class StatementBinderContext:
     """
 
     def __init__(self):
-        self._table_alias_map: Dict[str, DataFrameMetadata] = dict()
+        self._table_alias_map: Dict[str, TableMetadata] = dict()
         self._derived_table_alias_map: Dict[str, List[CatalogColumnType]] = dict()
         self._catalog = CatalogManager()
 

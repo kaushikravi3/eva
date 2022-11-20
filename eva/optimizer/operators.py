@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import List
 
 from eva.catalog.models.df_column import DataFrameColumn
-from eva.catalog.models.df_metadata import DataFrameMetadata
+from eva.catalog.models.df_metadata import DataFrameMetadata, TableMetadata
 from eva.catalog.models.udf_io import UdfIO
 from eva.expression.abstract_expression import AbstractExpression
 from eva.expression.constant_value_expression import ConstantValueExpression
@@ -141,7 +141,7 @@ class LogicalGet(Operator):
     def __init__(
         self,
         video: TableRef,
-        dataset_metadata: DataFrameMetadata,
+        dataset_metadata: TableMetadata,
         alias: str,
         predicate: AbstractExpression = None,
         target_list: List[AbstractExpression] = None,
@@ -392,7 +392,7 @@ class LogicalInsert(Operator):
     """[Logical Node for Insert operation]
 
     Arguments:
-        table_metainfo(DataFrameMetadata): table to intert data into
+        table_metainfo(TableMetadata): table to intert data into
         column_list{List[AbstractExpression]}:
             [After binding annotated column_list]
         value_list{List[AbstractExpression]}:
@@ -401,7 +401,7 @@ class LogicalInsert(Operator):
 
     def __init__(
         self,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         column_list: List[AbstractExpression],
         value_list: List[AbstractExpression],
         children: List = None,
@@ -703,13 +703,13 @@ class LogicalLoadData(Operator):
     """Logical node for load data operation
 
     Arguments:
-        table_metainfo(DataFrameMetadata): table to load data into
+        table_metainfo(TableMetadata): table to load data into
         path(Path): file path from where we are loading data
     """
 
     def __init__(
         self,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         path: Path,
         column_list: List[AbstractExpression] = None,
         file_options: dict = dict(),
@@ -781,7 +781,7 @@ class LogicalUpload(Operator):
         self,
         path: Path,
         video_blob: str,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         column_list: List[AbstractExpression] = None,
         file_options: dict = dict(),
         children: List = None,

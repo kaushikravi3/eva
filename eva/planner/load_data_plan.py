@@ -15,7 +15,7 @@
 from pathlib import Path
 from typing import List
 
-from eva.catalog.models.df_metadata import DataFrameMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.expression.abstract_expression import AbstractExpression
 from eva.planner.abstract_plan import AbstractPlan
 from eva.planner.types import PlanOprType
@@ -27,14 +27,14 @@ class LoadDataPlan(AbstractPlan):
     operations.
 
     Arguments:
-        table_metainfo(DataFrameMetadata): table metadata info to load into
+        table_metainfo(TableMetadata): table metadata info to load into
         file_path(Path): file path from where we will load the data
         batch_mem_size(int): memory size of the batch loaded from disk
     """
 
     def __init__(
         self,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         file_path: Path,
         batch_mem_size: int,
         column_list: List[AbstractExpression] = None,

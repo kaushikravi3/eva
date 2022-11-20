@@ -16,7 +16,7 @@
 from pathlib import Path
 from typing import List
 
-from eva.catalog.models.df_metadata import DataFrameMetadata
+from eva.catalog.models.df_metadata import TableMetadata
 from eva.expression.abstract_expression import AbstractExpression
 from eva.planner.abstract_plan import AbstractPlan
 from eva.planner.types import PlanOprType
@@ -37,7 +37,7 @@ class UploadPlan(AbstractPlan):
         self,
         file_path: Path,
         video_blob: str,
-        table_metainfo: DataFrameMetadata,
+        table_metainfo: TableMetadata,
         batch_mem_size: int,
         column_list: List[AbstractExpression] = None,
         file_options: dict = None,
