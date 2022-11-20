@@ -37,3 +37,6 @@ class ExchangePlan(AbstractPlan):
         return hash(
             (super().__hash__(), self.parallelism, frozenset(self.ray_conf.items()))
         )
+
+    def _Base__str(self) -> str:
+        return "ExchangePlan"
