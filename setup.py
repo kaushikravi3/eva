@@ -80,7 +80,7 @@ document_libs = [
     "sentence-transformers",
     "protobuf",
     "bs4",
-    "openai>=0.27.4",  # CHATGPT
+    "openai==0.28",  # CHATGPT
     "gpt4all",  # PRIVATE GPT
     "sentencepiece",  # TRANSFORMERS
 ]
@@ -112,6 +112,8 @@ pinecone_libs = ["pinecone-client"]
 
 chromadb_libs = ["chromadb"]
 
+milvus_libs = ["pymilvus>=2.3.0"]
+
 postgres_libs = [
     "psycopg2",
 ]
@@ -122,9 +124,11 @@ sklearn_libs = ["scikit-learn"]
 
 xgboost_libs = ["flaml[automl]"]
 
+hackernews_libs = ["requests"]
+
 forecasting_libs = [
-    "statsforecast", # MODEL TRAIN AND FINE TUNING
-    "neuralforecast" # MODEL TRAIN AND FINE TUNING
+    "statsforecast",  # MODEL TRAIN AND FINE TUNING
+    "neuralforecast",  # MODEL TRAIN AND FINE TUNING
 ]
 
 imagegen_libs = [
@@ -168,11 +172,13 @@ EXTRA_REQUIRES = {
     "qdrant": qdrant_libs,
     "pinecone": pinecone_libs,
     "chromadb": chromadb_libs,
+    "milvus": milvus_libs,
     "postgres": postgres_libs,
     "ludwig": ludwig_libs,
     "sklearn": sklearn_libs,
     "xgboost": xgboost_libs,
     "forecasting": forecasting_libs,
+    "hackernews": hackernews_libs,
     # everything except ray, qdrant, ludwig and postgres. The first three fail on pyhton 3.11.
     "dev": dev_libs + vision_libs + document_libs + function_libs + notebook_libs + forecasting_libs + sklearn_libs + imagegen_libs + xgboost_libs
 }

@@ -46,7 +46,7 @@ Here are some illustrative **AI queries** for a ChatGPT-based video question ans
     --- The 'transcripts' table has a column called 'text' with the transcript text
     --- Since ChatGPT is a built-in function in EvaDB, we don't have to define it
     --- We can directly use ChatGPT() in any query
-    --- We will only need to set the OPENAI_KEY as an environment variable
+    --- We will only need to set the OPENAI_API_KEY as an environment variable
     SELECT ChatGPT('Is this video summary related to Ukraine russia war', text) 
         FROM TEXT_SUMMARY;
 
@@ -92,6 +92,6 @@ After registering ``MnistImageClassifier`` function, you can call the function i
 AI-Centric Query Optimization
 -----------------------------
 
-EvaDB optimizes the AI queries to save money spent on running models and reduce query execution time. It contains a novel `Cascades-style query optimizer <https://www.cse.iitb.ac.in/infolab/Data/Courses/CS632/Papers/Cascades-graefe.pdf>`__  tailored for AI queries.
+EvaDB optimizes the AI queries to save money spent on running models and reduce query execution time. It contains a novel `Cascades-style query optimizer <https://faculty.cc.gatech.edu/~jarulraj/courses/8803-s21/slides/22-cascades.pdf>`__  tailored for AI queries.
 
 Query optimization has powered SQL database systems for several decades. It is the bridge that connects the declarative query language to efficient query execution on hardware. EvaDB accelerates AI queries using a collection of optimizations detailed in the :ref:`optimizations<optimizations>` page.
